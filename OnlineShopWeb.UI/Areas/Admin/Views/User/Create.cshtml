@@ -1,0 +1,140 @@
+﻿@model OnlineShopWeb.Data.EF.User
+
+@{
+    ViewBag.Title = "Quản lý người dùng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section header{
+    Thêm mới người dùng
+
+}
+@using (Html.BeginForm("Create", "User", FormMethod.Post))
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row ">
+            <div class="col-md-6 py-3 ">
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
+                        <label for="UserName">UserName</label>
+
+                        @*@Html.LabelFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })*@
+                    </div>
+                    <div class="col-md-1">
+                        <label for="UserName"> : </label>
+                    </div>
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
+                        <label for="Password">Password</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="Password"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
+                        <label for="Name">Name</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="Name"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+                </div>
+            <div class="col-md-6 py-3">
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
+                        <label for="Phone">Phone</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="Phone"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
+                        <label  for="Email">Email</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="Email"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
+                        <label  for="Address">Address</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="Address"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label for="Status">Status</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="Status"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(model => model.Status)
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row ">
+            <div class="col-md-6" style="padding: 3px;">
+                <button type="submit" class="btn btn-lg btn-primary text-sm-center">Lưu lại</button>
+
+            </div>
+            <div class="col-md-6 text-right py-15" >
+                @Html.ActionLink("Back to List", "Index")
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+    </div>
+}
+
+

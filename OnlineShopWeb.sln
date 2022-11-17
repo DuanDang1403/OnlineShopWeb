@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShopWeb.UI", "OnlineShopWeb.UI\OnlineShopWeb.UI.csproj", "{818B8809-2331-4C77-8DD0-1D3275810037}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShopWeb.Data", "OnlineShopWeb.Data\OnlineShopWeb.Data.csproj", "{310740A4-9B57-4DD9-A6E4-D32B032D41FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A834F758-76FF-4938-8C39-04D49831B31F}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.txt = ReadMe.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{818B8809-2331-4C77-8DD0-1D3275810037}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{818B8809-2331-4C77-8DD0-1D3275810037}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{818B8809-2331-4C77-8DD0-1D3275810037}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{818B8809-2331-4C77-8DD0-1D3275810037}.Release|Any CPU.Build.0 = Release|Any CPU
+		{310740A4-9B57-4DD9-A6E4-D32B032D41FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{310740A4-9B57-4DD9-A6E4-D32B032D41FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{310740A4-9B57-4DD9-A6E4-D32B032D41FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{310740A4-9B57-4DD9-A6E4-D32B032D41FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B839570A-6890-4107-ABD3-61DF0FAB15C3}
+	EndGlobalSection
+EndGlobal

@@ -137,6 +137,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Common\CryptoService.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
@@ -2060,6 +2061,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Areas\Admin\Views\Product\" />
     <Folder Include="Assets\Client\" />
     <Folder Include="Models\" />
   </ItemGroup>

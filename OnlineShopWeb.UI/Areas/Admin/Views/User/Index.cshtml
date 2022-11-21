@@ -9,15 +9,10 @@
 }
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <div class="row">
-            <!--<div class="col-md-4 text-danger text-uppercase text-bottom">-->
-                @*<h6 class="m-0 font-weight-bold text-primary">Danh sách người dùng</h6>*@
-                <!--<strong>Danh sách người dùng</strong>
-            </div>-->
+        <div class="row">         
             <div class="col-md-6 text-center ">
                 @using (Html.BeginForm("Index", "User", FormMethod.Get))
                 {
-                    @*<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">*@
                     <div class="input-group input-group-sm" style="width: 350px;padding: 5px;">
                         <input type="text" name="searchstring" class="form-control  border-0 small text-light" placeholder="Search for..."
                                aria-label="Search" aria-describedby="basic-addon2">
@@ -26,18 +21,25 @@
                                 <i class="fas fa-search fa-sm"></i>
                             </button>
                         </div>
-                    </div>
-                    @*</form>*@
+                    </div>                   
                 }
             </div>
             <div class="col-md-6 text-right">
                 <a href="@Url.Action("Create", "User")" class="btn btn-sm btn-success"><i class="fas fa-light fa-plus"></i>Thêm</a>
-                @*@Html.ActionLink("Create", "User")*@
+               
             </div>
         </div>
 
     </div>
     <div class="card-body">
+        <div class="row">
+            @if (ViewBag.SuccessMsg != null)
+            {
+                <div id="msgAlert" class="alert alert-success" role="alert">
+                    @ViewBag.SuccessMsg
+                </div>
+            }
+        </div>
         <div class="table-responsive">
             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                 <div class="row">

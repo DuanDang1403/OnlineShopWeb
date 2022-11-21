@@ -1,0 +1,141 @@
+﻿@model OnlineShopWeb.Data.EF.Product
+@{
+    ViewBag.Title = "Quản lý sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+@section header{
+    Tạo mới sản phẩm
+}
+
+@using (Html.BeginForm("Create", "Product", FormMethod.Post))
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row ">
+            <div class="col-md-6 py-3 ">
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
+                        <label for="ProductName">ProductName</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="ProductName"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
+                        <label for="ProductCode">ProductCode</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="ProductCode"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.ProductCode, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ProductCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
+                        <label for="Description">Description</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="Description"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-6 py-3">
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
+                        <label for="Price">Price</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="Price"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
+                        <label for="PromotionPrice">PromotionPrice</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="PromotionPrice"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.PromotionPrice, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PromotionPrice, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
+                        <label for="Quantity">Quantity</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="Quantity"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
+                        <label for="Warranty">Warranty</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="Warranty"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Warranty, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Warranty, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label for="Status">Status</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="Warranty"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(model => model.Status)
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row ">
+            <div class="col-md-6" style="padding: 3px;">
+                <button type="submit" class="btn btn-lg btn-primary text-sm-center">Lưu lại</button>
+
+            </div>
+            <div class="col-md-6 text-right py-15">
+                @Html.ActionLink("Back to List", "Index")
+
+            </div>
+
+        </div>
+    </div>
+}
+

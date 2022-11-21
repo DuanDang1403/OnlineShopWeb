@@ -17,6 +17,10 @@ namespace OnlineShopWeb.UI.Areas.Admin.Controllers
         {
             var _dao = new UserDao();
             var _list = _dao.GetListUsers(searchstring,page, pagesize);
+            if (TempData["result"] != null)
+            {
+                ViewBag.SuccessMsg = TempData["result"];
+            }
             return View(_list);
         }
 
@@ -46,12 +50,12 @@ namespace OnlineShopWeb.UI.Areas.Admin.Controllers
                 long _id = _dao.Insert(user);
                 if (_id > 0)
                 {
-                    return RedirectToAction("Index", "User");
-                    //return View(user);
+                    TempData["result"] = "Thêm mới người dùng thành công";
+                    return RedirectToAction("Index", "User");                   
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Thêm mới User không thành công");
+                    TempData["result"] = "Thêm mới người dùng không thành công";
                 }
                 
             }
@@ -81,11 +85,12 @@ namespace OnlineShopWeb.UI.Areas.Admin.Controllers
                 var _id = _dao.Update(user);
                 if (_id)
                 {
+                    TempData["result"] = "Cập nhật người dùng thành công";
                     return RedirectToAction("Index", "User");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Cập nhật User không thành công");
+                    TempData["result"] = "Cập nhật người dùng không thành công";
                 }
             }
             else
@@ -102,11 +107,12 @@ namespace OnlineShopWeb.UI.Areas.Admin.Controllers
             var _result = new UserDao().Delete(id);
             if (_result)
             {
+                TempData["result"] = "Xóa người dùng thành công";
                 return RedirectToAction("Index", "User");
             }
             else
             {
-                ModelState.AddModelError("", "Xóa User không thành công");
+                TempData["result"] = "Xóa người dùng không thành công";
                 return View();
             }
         }

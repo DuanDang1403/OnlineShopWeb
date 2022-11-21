@@ -71,7 +71,7 @@ namespace OnlineShopWeb.UI.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(Product product)
         {          
-            product.ProductID = _productDao.GetProductByProductName(product.ProductName).ProductID;
+            //product.ProductID = _productDao.GetProductByID(product.ProductID).ProductID;
             if (ModelState.IsValid)
             {
                 

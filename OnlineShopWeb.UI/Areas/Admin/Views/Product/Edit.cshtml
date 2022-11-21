@@ -23,6 +23,18 @@
             <div class="col-md-6 py-3 ">
                 <div class="row" style="padding-bottom:5px">
                     <div class="col-md-2">
+                        <label for="ProductID">ProductID</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="ProductID"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.ProductID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ProductID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
                         <label for="ProductName">ProductName</label>
                     </div>
                     <div class="col-md-1">

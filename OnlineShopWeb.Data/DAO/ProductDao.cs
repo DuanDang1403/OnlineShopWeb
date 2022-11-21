@@ -17,6 +17,7 @@ namespace OnlineShopWeb.Data.DAO
         }
         public long Insert(Product entity)
         {
+            entity.CreateDate = DateTime.Now;
             db.Products.Add(entity);
             db.SaveChanges();
             return entity.ProductID;

@@ -106,24 +106,24 @@
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        @* <h6 class="collapse-header">Login Screens:</h6>*@
-                        <a class="collapse-item" href="~/Admin/Product/Index">Danh mục sản phẩm</a>
+                        <h6 class="collapse-header">Danh Mục Sản Phẩm</h6>
+                        <a class="collapse-item" href="~/Admin/Product/Index">Danh sách sản phẩm</a>
                         <a class="collapse-item" href="~/Admin/Product/Create">Tạo mới sản phẩm</a>
 
                     </div>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                   aria-expanded="true" aria-controls="collapsePages">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseContent"
+                   aria-expanded="true" aria-controls="collapseContent">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Tin tưc </span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapseContent" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        @* <h6 class="collapse-header">Login Screens:</h6>*@
-                        @*<a class="collapse-item" href="~/Admin/Content/Index">Danh mục sản phẩm</a>*@
-                        <a class="collapse-item" href="~/Admin/Content/Create">Tạo mới sản phẩm</a>
+                        <h6 class="collapse-header">Danh mục tin tức</h6>
+                        <a class="collapse-item" href="~/Admin/Content/Index">Danh sách</a>
+                        <a class="collapse-item" href="~/Admin/Content/Create">Tạo mới </a>
 
                     </div>
                 </div>
@@ -398,13 +398,13 @@
             </div>
             <!-- End of Main Content -->
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            @*<footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Your Website 2021</span>
                     </div>
                 </div>
-            </footer>
+            </footer>*@
             <!-- End of Footer -->
 
         </div>
@@ -444,6 +444,7 @@
     <!-- Core plugin JavaScript-->
     <script src="/Assets/Admin/vendor/jquery-easing/jquery.easing.min.js"></script>
     <script src="/Assets/Admin/js/plugins/ckfinder/ckfinder.js"></script>
+    <script src="/Assets/Admin/js/plugins/ckeditor/ckeditor.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="/Assets/Admin/js/sb-admin-2.min.js"></script>
 

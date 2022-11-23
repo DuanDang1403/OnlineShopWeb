@@ -1,0 +1,111 @@
+﻿@model PagedList.IPagedList<OnlineShopWeb.Data.EF.Content>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Quản lý tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section header{
+    Danh mục tin tức
+}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="row">
+            <div class="col-md-6 text-center ">
+                @using (Html.BeginForm("Index", "Content", FormMethod.Get))
+                {
+                    <div class="input-group input-group-sm" style="width: 350px;padding: 5px;">
+                        <input type="text" name="searchstring" class="form-control  border-0 small text-light" placeholder="Search for..."
+                               aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-md-6 text-right">
+                <a href="@Url.Action("Create", "Content")" class="btn btn-sm btn-success"><i class="fas fa-light fa-plus"></i>Thêm</a>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="row">
+            @if (ViewBag.SuccessMsg != null)
+            {
+                <div id="msgAlert" class="alert alert-success" role="alert">
+                    @ViewBag.SuccessMsg
+                </div>
+            }
+        </div>
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>ContentName</th>
+                                <th>MetaTitle</th>
+                                <th>Description</th>
+                                <th>Image</th>
+                                <th>CategoryID</th>
+                                <th>Detail</th>
+                                <th>Warranty</th>
+                                <th>CreateDate</th>
+                                <th>CreateBy</th>
+                                <th>ModifiedDate</th>
+                                <th>ModifiedBy</th>
+                                <th>MetaKeywords</th>
+                                <th>MetaDescription</th>
+                                <th>Status</th>
+                                <th>ViewCount</th>
+                                <th>Tags</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var a in Model)
+                            {
+                                <tr id="row_@a.ContentID">
+                                    <td>
+                                        <a href="/Admin/Content/Edit/@a.ContentID">Edit</a>                                        |
+
+                                        @Ajax.ActionLink("Delete", "Delete", new { @id = a.ContentID }, new AjaxOptions
+                                        {
+                                            Confirm = "Bạn có muốn xoá bản ghi này?",
+                                            OnComplete = "$('#row_" + @a.ContentID + "').remove()",
+                                            HttpMethod = "Delete"
+                                        })
+
+                                    </td>
+                                    <td>@a.ContentName</td>
+                                    <td>@a.MetaTitle</td>
+                                    <td>@a.Description</td>
+                                    <td>@a.Image</td>
+                                    <td>@a.CategoryID</td>
+                                    <td>@a.Detail</td>
+                                    <td>@a.Warranty</td>
+                                    <td>@a.CreateDate</td>
+                                    <td>@a.CreateBy</td>
+                                    <td>@a.ModifiedDate</td>
+                                    <td>@a.ModifiedBy</td>
+                                    <td>@a.MetaKeywords</td>
+                                    <td>@a.MetaDescription</td>
+                                    <td>@a.Status</td>
+                                    <td>@a.ViewCount</td>
+                                    <td>@a.Tags</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -8,23 +8,24 @@ using System.Threading.Tasks;
 
 namespace OnlineShopWeb.Data.DAO
 {
-    public class CategoryDao
+    public class ContentDao
     {
         OnlineShopWebDBContext db = null;
-        public CategoryDao()
+        public ContentDao()
         {
             db = new OnlineShopWebDBContext();
         }
-        public long Insert(Category entity)
+        public long Insert(Content entity)
         {
-            db.Categories.Add(entity);
+            entity.CreateDate = DateTime.Now;
+            db.Contents.Add(entity);
             db.SaveChanges();
-            return entity.CategoryID;
+            return entity.ContentID;
         }
 
         public bool Delete(long? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return false;
             }
@@ -32,12 +33,12 @@ namespace OnlineShopWeb.Data.DAO
             {
                 try
                 {
-                    var _result = db.Categories.Find(id);
+                    var _result = db.Contents.Find(id);
                     if (_result == null)
                     {
                         return false;
                     }
-                    db.Categories.Remove(_result);
+                    db.Contents.Remove(_result);
                     db.SaveChanges();
                     return true;
                 }
@@ -46,17 +47,21 @@ namespace OnlineShopWeb.Data.DAO
                     return false;
                 }
             }
-           
+
         }
 
-        public bool Update(Category entity)
+        public bool Update(Content entity)
         {
             try
             {
-                var _result = db.Categories.Find(entity.CategoryID);
-                _result.CategoryName = entity.CategoryName;                
+                var _result = db.Contents.Find(entity.ContentID);
+                _result.ContentName = entity.ContentName;
+                _result.Description = entity.Description;
+                _result.MetaDescription = entity.MetaDescription;
+                _result.MetaTitle = entity.MetaTitle;
+                _result.Image = entity.Image;
                 _result.ModifiedBy = entity.ModifiedBy;
-                _result.ModifiedDate = DateTime.Now;            
+                _result.ModifiedDate = DateTime.Now;
                 _result.Status = entity.Status;
                 db.SaveChanges();
                 return true;
@@ -67,31 +72,27 @@ namespace OnlineShopWeb.Data.DAO
             }
 
         }
-        public IEnumerable<Category> GetListCategory(string searchstring, int page, int pagesize)
+        public IEnumerable<Content> GetListContent(string searchstring, int page, int pagesize)
         {
-            IQueryable<Category> _model = db.Categories;
+            IQueryable<Content> _model = db.Contents;
             if (!string.IsNullOrEmpty(searchstring))
             {
-                _model = _model.Where(x => x.CategoryName.Contains(searchstring));
+                _model = _model.Where(x => x.ContentName.Contains(searchstring));
             }
-            return _model.OrderBy(x => x.CategoryID).ToPagedList(page, pagesize);
+            return _model.OrderBy(x => x.ContentID).ToPagedList(page, pagesize);
         }
-        public Category GetCategoryByCategoryName(string categoryName)
+        public Content GetContentByContentName(string contentName)
         {
-            return db.Categories.FirstOrDefault(x => x.CategoryName == categoryName);
+            return db.Contents.FirstOrDefault(x => x.ContentName == contentName);
         }
 
-        public Category GetCategoryByID(long? CategoryId)
+        public Content GetContentByID(long? contentId)
         {
-            if (CategoryId == null)
+            if (contentId == null)
             {
                 return null;
             }
-            return db.Categories.Find(CategoryId);          
-        }
-        public List<Category> ListAll()
-        {
-            return db.Categories.Where(x => x.Status == true).ToList();
+            return db.Contents.Find(contentId);
         }
 
     }

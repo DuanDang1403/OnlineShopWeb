@@ -1,12 +1,12 @@
 ﻿@model OnlineShopWeb.Data.EF.Content
 
 @{
-    ViewBag.Title = "Tạo mới tin tức";
+    ViewBag.Title = "Cập nhật tin tức";
     Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
 }
 
 @section header{
-    Tạo mới tin tức
+    Cập nhật tin tức
 }
 @section jsFooter{
     <script>
@@ -21,10 +21,10 @@
         var editor = CKEDITOR.replace('txtContent', {
             customConfig: '/Assets/Admin/js/plugins/ckeditor/config.js',
         });
-        
+
     </script>
 }
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Content", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -33,6 +33,18 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row ">
             <div class="col-md-6 py-3 ">
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
+                        <label for="ContentID">ID</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="ContentID"> : </label>
+                    </div>
+                    <div class="col-md-9" style="width:250px">
+                        @Html.TextBoxFor(model => model.ContentID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ContentID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
                 <div class="row" style="padding-bottom:5px">
                     <div class="col-md-2">
                         <label for="ContentName">Name</label>
@@ -126,7 +138,7 @@
             </div>
             <div class="col-md-6 py-3">
 
-                
+
                 <div class="row" style="padding-bottom:5px">
                     <div class="col-md-2">
                         <label for="Detail">Detail</label>
@@ -144,7 +156,7 @@
 
         <div class="row ">
             <div class="col-md-6" style="padding: 3px;">
-                <button type="submit" class="btn btn-lg btn-primary text-sm-center">Lưu lại</button>
+                <button type="submit" class="btn btn-lg btn-primary text-sm-center">Cập nhật</button>
 
             </div>
             <div class="col-md-6 text-right py-15">

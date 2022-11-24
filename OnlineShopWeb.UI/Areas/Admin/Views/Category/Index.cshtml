@@ -2,32 +2,38 @@
 @model PagedList.IPagedList<OnlineShopWeb.Data.EF.Category>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = " Quản lý sản phẩm";
+    ViewBag.Title = " Quản lý danh mục sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
 }
 
 @section header{
-    Quản lý sản phẩm
+    Danh mục sản phẩm
 }
 
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm</h6>
-    </div>
+<div class="card shadow mb-4">    
     <div class="card-body">
-        @using (Html.BeginForm("Index", "User", FormMethod.Get))
+        @using (Html.BeginForm("Index", "Category", FormMethod.Get))
         {
-            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                <div class="input-group" style="width: 350px;padding: 5px;">
-                    <input type="text" name="searchstring" class="form-control bg-light border-0 small" placeholder="Search for..."
-                           aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary" type="submit">
-                            <i class="fas fa-search fa-sm"></i>
-                        </button>
-                    </div>
+
+            <div class="input-group input-group-sm" style="width: 350px;padding: 5px;">
+                <input type="text" name="searchstring" class="form-control border-0 small" placeholder="Search for..."
+                       aria-label="Search" aria-describedby="basic-addon2" style="color:black">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                    </button>
                 </div>
-            </form>
+            </div>
+            @*<div class="input-group input-group-sm" style="width: 350px;padding: 5px;">
+                <input type="text" name="searchstring" class="form-control  border-0 small" placeholder="Search for..."
+                       aria-label="Search" aria-describedby="basic-addon2" style="color:black">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>*@
+
         }
         <div class="table-responsive">
             <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">

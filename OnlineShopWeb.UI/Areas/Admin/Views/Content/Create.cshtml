@@ -27,12 +27,50 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    <style>
+        .col_left {
+            width: 40%;
+           
+            float:left;
+        }
+        .Col_Input{
+            width:280px;
+          
+        }
+        .row{
+            width:500px;
+            clear:both;
+        }
+        .row1 {           
+            clear: both;
+        }
+        .col_right {
+            width: 58%;
+            
+            float: right;
+        }
+        .row1_left {
+            width: 48%;
+            
+            float: left;
+        }
+        .row1_right {
+            width: 48%;
+            
+            float: right;
+            text-align:right;
+        }
+        .col_detail {
+            width: 600px;
+           
+        }
+    </style>
 
     <div class="form-horizontal">
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="row ">
-            <div class="col-md-6 py-3 ">
+        <div class="row1 ">
+            <div class="col_left"> @*class="col-md-6 py-3">*@
                 <div class="row" style="padding-bottom:5px">
                     <div class="col-md-2">
                         <label for="ContentName">Name</label>
@@ -40,7 +78,7 @@
                     <div class="col-md-1">
                         <label for="ContentName"> : </label>
                     </div>
-                    <div class="col-md-9" style="width:250px">
+                    <div class="Col_Input">
                         @Html.TextBoxFor(model => model.ContentName, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.ContentName, "", new { @class = "text-danger" })
                     </div>
@@ -52,7 +90,7 @@
                     <div class="col-md-1">
                         <label for="MetaTitle"> : </label>
                     </div>
-                    <div class="col-md-9" style="width:250px">
+                    <div class="Col_Input">
                         @Html.TextBoxFor(model => model.MetaTitle, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.MetaTitle, "", new { @class = "text-danger" })
                     </div>
@@ -64,20 +102,20 @@
                     <div class="col-md-1">
                         <label for="Description"> : </label>
                     </div>
-                    <div class="col-md-9" style="width:250px">
+                    <div class="Col_Input">
                         @Html.TextBoxFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                     </div>
 
                 </div>
-                <div class="row" style="padding-bottom:5px">
+                <div class="row" style="padding-bottom:5px;">
                     <div class="col-md-2">
                         <label for="Image">Image</label>
                     </div>
                     <div class="col-md-1">
                         <label for="Image"> : </label>
                     </div>
-                    <div class="col-md-9" style="width:250px">
+                    <div class="Col_Input">
                         @Html.TextBoxFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" }, id = "txtImage" })
                         @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
                         <a id="btnSelectImage" href="#">Chọn ảnh</a>
@@ -90,7 +128,7 @@
                     <div class="col-md-1">
                         <label for="CategoryID"> : </label>
                     </div>
-                    <div class="col-md-9" style="width:250px">
+                    <div class="Col_Input" >
                         @Html.DropDownListFor(model => model.CategoryID, null, new { htmlAttributes = new { @class = "form-control" }, style = "width:194px;" })
                         @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
                     </div>
@@ -104,7 +142,7 @@
                     <div class="col-md-1">
                         <label for="Warranty"> : </label>
                     </div>
-                    <div class="col-md-9" style="width:250px">
+                    <div class="Col_Input">
                         @Html.TextBoxFor(model => model.Warranty, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Warranty, "", new { @class = "text-danger" })
                     </div>
@@ -116,7 +154,7 @@
                     <div class="col-md-1">
                         <label for="Warranty"> : </label>
                     </div>
-                    <div class="col-md-9" style="width:250px">
+                    <div class="Col_Input">
                         <div class="checkbox">
                             @Html.CheckBoxFor(model => model.Status)
                             @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
@@ -124,9 +162,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 py-3">
-
-                
+            <div class="col_right">
                 <div class="row" style="padding-bottom:5px">
                     <div class="col-md-2">
                         <label for="Detail">Detail</label>
@@ -134,20 +170,24 @@
                     <div class="col-md-1">
                         <label for="Detail"> : </label>
                     </div>
-                    <div class="col-md-9">
-                        @Html.TextBoxFor(model => model.Detail, new { htmlAttributes = new { @class = "form-control" }, id = "txtContent" })
+                    
+                </div>
+                <div class="row" style="padding-bottom:5px">
+                   
+                    <div class="col_detail">
+                        @Html.TextAreaFor(model => model.Detail, new { htmlAttributes = new { @class = "form-control" }, id = "txtContent" })
                         @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="row ">
-            <div class="col-md-6" style="padding: 3px;">
+        <hr/>
+        <div class="row1">           
+            <div class="row1_left" style="padding: 3px;">
                 <button type="submit" class="btn btn-lg btn-primary text-sm-center">Lưu lại</button>
 
             </div>
-            <div class="col-md-6 text-right py-15">
+            <div class="row1_right">
                 @Html.ActionLink("Back to List", "Index")
 
             </div>

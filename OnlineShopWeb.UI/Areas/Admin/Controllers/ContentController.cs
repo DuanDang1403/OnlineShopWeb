@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,11 +14,11 @@ namespace OnlineShopWeb.UI.Areas.Admin.Controllers
     {
         private static ContentDao _contentDao = new ContentDao();
         // GET: Admin/Content
-        public ActionResult Index(string searchstring, int page = 1, int pagesize = 3)
+        public ActionResult Index(string searchstring, int page = 1)
         {
-
+            int pagesize = int.Parse(ConfigurationManager.AppSettings["Pagesize"].ToString());
             var _list = _contentDao.GetListContent(searchstring, page, pagesize);
-            SetViewBag();
+            //SetViewBag();
             if (TempData["result"] != null)
             {
                 ViewBag.SuccessMsg = TempData["result"];
@@ -33,6 +34,7 @@ namespace OnlineShopWeb.UI.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Create(Content content)
         {
          
@@ -53,7 +55,7 @@ namespace OnlineShopWeb.UI.Areas.Admin.Controllers
             SetViewBag();
             return View();
         }
-        [HttpGet]
+        [HttpGet] 
         public ActionResult Edit(int id)
         {
             var _dao = _contentDao.GetContentByID(id);
@@ -62,15 +64,18 @@ namespace OnlineShopWeb.UI.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Edit(Content content)
-        {            
+        {
+            //content.ContentID = '#txtcontent';
             if (ModelState.IsValid)
             {
+                string _detail = content.Detail;
 
                 var _id = _contentDao.Update(content);
                 if (_id)
                 {
-                    TempData["result"] = "Cập nhật tun tức thành công";
+                    TempData["result"] = "Cập nhật tin tức thành công";
                     return RedirectToAction("Index", "Content");
                 }
                 else

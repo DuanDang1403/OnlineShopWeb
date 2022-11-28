@@ -1,5 +1,7 @@
-﻿using System;
+﻿using OnlineShopWeb.Data.DAO;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,18 +15,28 @@ namespace OnlineShopWeb.UI.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [ChildActionOnly]
+       public ActionResult Mainmenu ()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            int _typeId = int.Parse(ConfigurationManager.AppSettings["Main_Menu"].ToString());
+            var model = new MenuDao().GetAllByMenuTypeId(_typeId);           
+            return PartialView(model);
         }
 
-        public ActionResult Contact()
+        [ChildActionOnly]
+        public ActionResult Topmenu()
         {
-            ViewBag.Message = "Your contact page.";
+            int _typeId = int.Parse(ConfigurationManager.AppSettings["Top_Menu"].ToString());
+            var model = new MenuDao().GetAllByMenuTypeId(_typeId);
+            return PartialView(model);
+        }
 
-            return View();
+        [ChildActionOnly]
+        public ActionResult Footer()
+        {
+            string _id = ConfigurationManager.AppSettings["Footer"].ToString();
+            var model = new FooterDao().GetAllFooter(_id);
+            return PartialView(model);
         }
     }
 }

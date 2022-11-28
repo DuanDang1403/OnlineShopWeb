@@ -1,0 +1,11 @@
+﻿@model List<OnlineShopWeb.Data.EF.Menu>
+<div class="call">
+    <p><span>Cần hỗ trợ?</span> Liên hệ <span class="number">(+84) 977-014-903</span></span></p>
+</div>
+<div class="account_desc">
+    @foreach (var item in Model)
+    {
+        <li><a href="@item.Link" target="@item.Target">@item.Text</a></li>
+    }    
+</div>
+<div class="clear"></div>

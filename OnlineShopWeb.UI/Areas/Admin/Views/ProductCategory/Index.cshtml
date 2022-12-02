@@ -1,0 +1,106 @@
+﻿@model  PagedList.IPagedList<OnlineShopWeb.Data.EF.ProductCategory>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Quản lý loại sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+
+@section header{
+    Danh sách loại sản phẩm
+}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="row">
+            <div class="col-md-6 text-center ">
+                @using (Html.BeginForm("Index", "ProductCategory", FormMethod.Get))
+                {
+                    <div class="input-group input-group-sm" style="width: 350px;padding: 5px;">
+                        <input type="text" name="searchstring" class="form-control  border-0 small" placeholder="Search for..."
+                               aria-label="Search" aria-describedby="basic-addon2" style="color:black">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-md-6 text-right">
+                <a href="@Url.Action("Create", "ProductCategory")" class="btn btn-sm btn-success"><i class="fas fa-light fa-plus"></i>Thêm</a>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="row">
+            @if (ViewBag.SuccessMsg != null)
+            {
+                <div id="msgAlert" class="alert alert-success" role="alert">
+                    @ViewBag.SuccessMsg
+                </div>
+            }
+        </div>
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>ProductCategoryName </th>
+                                <th>MetaTitle           </th>
+                                <th>ParentID            </th>
+                                <th>DisplayOrder        </th>
+                                <th>SeoTitle            </th>
+                                <th>CreateDate          </th>
+                                <th>CreateBy            </th>
+                                <th>ModifiedDate        </th>
+                                <th>ModifiedBy          </th>
+                                <th>MetaKeywords        </th>
+                                <th>MetaDescription     </th>
+                                <th>Status              </th>
+                                <th>ShowOnHome          </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var a in Model)
+                            {
+                                <tr id="row_@a.ProductCategoryID">
+                                    <td>
+                                        <a href="/Admin/ProductCategory/Edit/@a.ProductCategoryID">Edit</a>                                        |
+
+                                        @Ajax.ActionLink("Delete", "Delete", new { @id = a.ProductCategoryID }, new AjaxOptions
+                                        {
+                                            Confirm = "Bạn có muốn xoá bản ghi này?",
+                                            OnComplete = "$('#row_" + @a.ProductCategoryID + "').remove()",
+                                            HttpMethod = "Delete"
+                                        })
+
+                                    </td>
+                                    <td>@a.ProductCategoryName </td>
+                                    <td>@a.MetaTitle           </td>
+                                    <td>@a.ParentID            </td>
+                                    <td>@a.DisplayOrder        </td>
+                                    <td>@a.SeoTitle            </td>
+                                    <td>@a.CreateDate          </td>
+                                    <td>@a.CreateBy            </td>
+                                    <td>@a.ModifiedDate        </td>
+                                    <td>@a.ModifiedBy          </td>
+                                    <td>@a.MetaKeywords        </td>
+                                    <td>@a.MetaDescription     </td>
+                                    <td>@a.Status              </td>
+                                    <td>@a.ShowOnHome          </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            </div>
+        </div>
+    </div>
+</div>
+

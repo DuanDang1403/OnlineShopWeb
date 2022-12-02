@@ -40,7 +40,7 @@ namespace OnlineShopWeb.Data.EF
         [StringLength(250)]
         public string MetaDescription { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
 
         public bool? ShowOnHome { get; set; }
     }

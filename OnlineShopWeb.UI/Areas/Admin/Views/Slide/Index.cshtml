@@ -1,19 +1,17 @@
-﻿
-@model PagedList.IPagedList<OnlineShopWeb.Data.EF.Category>
+﻿@model PagedList.IPagedList<OnlineShopWeb.Data.EF.Slide>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = " Quản lý danh mục";
+    ViewBag.Title = "Quản lý Slide";
     Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
 }
-
 @section header{
-    Danh sách danh mục
+    Danh sách slide
 }
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <div class="row">
             <div class="col-md-6 text-center ">
-                @using (Html.BeginForm("Index", "Category", FormMethod.Get))
+                @using (Html.BeginForm("Index", "Slide", FormMethod.Get))
                 {
                     <div class="input-group input-group-sm" style="width: 350px;padding: 5px;">
                         <input type="text" name="searchstring" class="form-control  border-0 small" placeholder="Search for..."
@@ -27,7 +25,7 @@
                 }
             </div>
             <div class="col-md-6 text-right">
-                <a href="@Url.Action("Create", "Category")" class="btn btn-sm btn-success"><i class="fas fa-light fa-plus"></i>Thêm</a>
+                <a href="@Url.Action("Create", "Slide")" class="btn btn-sm btn-success"><i class="fas fa-light fa-plus"></i>Thêm</a>
 
             </div>
         </div>
@@ -49,51 +47,41 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>CategoryName</th>
-                                <th>MetaTitle</th>
-                                <th>ParentID</th>
+                                <th>Image       </th>
                                 <th>DisplayOrder</th>
-                                <th>SeoTitle</th>
-                                <th>CreateDate</th>
-                                <th>CreateBy</th>
+                                <th>Link        </th>
+                                <th>Description </th>
+                                <th>CreateDate  </th>
+                                <th>CreateBy    </th>
                                 <th>ModifiedDate</th>
-                                <th>ModifiedBy</th>
-                                <th>MetaKeywords</th>
-                                <th>MetaDescription</th>
-                                <th>Status</th>
-                                <th>ShowOnHome</th>
+                                <th>ModifiedBy  </th>
+                                <th>Status      </th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var a in Model)
                             {
-                                <tr id="row_@a.CategoryID">
+                                <tr id="row_@a.SlideID">
                                     <td>
-                                                                                
-                                        <a href="/Admin/Category/Edit/@a.CategoryID">Edit</a>
-                                        |
-                                        @Ajax.ActionLink("Delete", "Delete", new { @id = a.CategoryID }, new AjaxOptions
+                                        <a href="/Admin/Slide/Edit/@a.SlideID">Edit</a>                                        |
+
+                                        @Ajax.ActionLink("Delete", "Delete", new { @id = a.SlideID }, new AjaxOptions
                                         {
                                             Confirm = "Bạn có muốn xoá bản ghi này?",
-                                            OnComplete = "$('#row_" + @a.CategoryID + "').remove()",
+                                            OnComplete = "$('#row_" + @a.SlideID + "').remove()",
                                             HttpMethod = "Delete"
                                         })
 
                                     </td>
-                                    <td>@a.CategoryName</td>
-                                    <td>@a.MetaTitle</td>
-                                    <td>@a.ParentID</td>
+                                    <td>@a.Image       </td>
                                     <td>@a.DisplayOrder</td>
-                                    <td>@a.SeoTitle</td>
-                                    <td>@a.Status</td>
-                                    <td>@a.CreateDate</td>
-                                    <td>@a.CreateBy</td>
+                                    <td>@a.Link        </td>
+                                    <td>@a.Description </td>
+                                    <td>@a.CreateDate  </td>
+                                    <td>@a.CreateBy    </td>
                                     <td>@a.ModifiedDate</td>
-                                    <td>@a.ModifiedBy</td>
-                                    <td>@a.MetaKeywords</td>
-                                    <td>@a.MetaDescription</td>
-                                    <td>@a.Status</td>
-                                    <td>@a.ShowOnHome</td>
+                                    <td>@a.ModifiedBy  </td>
+                                    <td>@a.Status      </td>
 
                                 </tr>
                             }
@@ -106,7 +94,3 @@
         </div>
     </div>
 </div>
-
-
-
-

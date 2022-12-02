@@ -20,6 +20,10 @@ namespace OnlineShopWeb.UI.Areas.Admin.Controllers
         public ActionResult Index(string searchstring, int page = 1, int pagesize = 3)
         {             
             var _list = _categoryDao.GetListCategory(searchstring, page, pagesize);
+            if (TempData["result"] != null)
+            {
+                ViewBag.SuccessMsg = TempData["result"];
+            }
             return View(_list);
         }
 
@@ -41,24 +45,28 @@ namespace OnlineShopWeb.UI.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: Admin/Category/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CategoryID,CategoryName,MetaTitle,ParentID,DisplayOrder,SeoTitle,CreateDate,CreateBy,ModifiedDate,ModifiedBy,MetaKeywords,MetaDescription,Status,ShowOnHome")] Category category)
+        [HttpPost]     
+        public ActionResult Create(Category category)
         {
-            if (ModelState.IsValid)
+            if (string.IsNullOrEmpty(category.CategoryName))
+            {
+                ModelState.AddModelError("", "Mời nhập tên danh mục");
+                return View();
+            }
+           
+            else
             {
                 long _id = _categoryDao.Insert(category);
                 if (_id > 0)
                 {
+                    TempData["result"] = "Thêm mới loại danh mục thành công";
                     return RedirectToAction("Index", "Category");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Thêm mới SP không thành công");
-                }                
+                    TempData["result"] = "Thêm mới loại danh mục không thành công";
+                }
+
             }
 
             return View();
@@ -66,35 +74,28 @@ namespace OnlineShopWeb.UI.Areas.Admin.Controllers
 
         // GET: Admin/Category/Edit/5
         [HttpGet]
-        public ActionResult Edit(long? id)
+        public ActionResult Edit(int id)
         {
-            var _list = _categoryDao.GetCategoryByID(id);
-            if (_list == null)
-            {
-                return HttpNotFound();
-            }
+            var _list = _categoryDao.GetCategoryByID(id);           
             return View(_list);
         }
 
-        // POST: Admin/Category/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CategoryID,CategoryName,MetaTitle,ParentID,DisplayOrder,SeoTitle,CreateDate,CreateBy,ModifiedDate,ModifiedBy,MetaKeywords,MetaDescription,Status,ShowOnHome")] Category category)
-        {
-         
-            category.CategoryID = _categoryDao.GetCategoryByCategoryName(category.CategoryName).CategoryID;
+        
+        [HttpPost]    
+        public ActionResult Edit(Category category)
+        {         
+           
             if (ModelState.IsValid)
             {                
                 var _id = _categoryDao.Update(category);
                 if (_id)
                 {
+                    TempData["result"] = "Cập nhật loại danh mục thành công";
                     return RedirectToAction("Index", "Category");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Cập nhật SP không thành công");
+                    TempData["result"] = "Cập nhật loại danh mục không thành công";
                 }
             }
             else
@@ -107,16 +108,17 @@ namespace OnlineShopWeb.UI.Areas.Admin.Controllers
 
         // GET: Admin/Category/Delete/5
         [HttpDelete]
-        public ActionResult Delete(long? id)
+        public ActionResult Delete(int id)
         {
             var _result = _categoryDao.Delete(id);
             if (_result)
             {
+                TempData["result"] = "xóa loại danh mục thành công";
                 return RedirectToAction("Index", "Category");
             }
             else
             {
-                ModelState.AddModelError("", "Xóa SP không thành công");
+                TempData["result"] = "xóa loại danh mục không thành công";
                 return View();
             }
         }

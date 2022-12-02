@@ -1,15 +1,28 @@
-﻿@model OnlineShopWeb.Data.EF.Category
-
+﻿@model OnlineShopWeb.Data.EF.Slide
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Quản lý Slide";
     Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
 }
-
 @section header{
-    Chỉnh sửa sản phẩm
+    Tạo mới Slide
 }
+@section jsFooter{
+    <script>
+        $('#btnSelectImage').on('click', function (e) {
+            e.preventDefault();
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (url) {
+                $('#txtImage').val(url);
+            };
+            finder.popup();
+        })
+        //var editor = CKEDITOR.replace('txtContent', {
+        //    customConfig: '/Assets/Admin/js/plugins/ckeditor/config.js',
+        //});
 
-@using (Html.BeginForm("Edit", "Category", FormMethod.Post))
+    </script>
+}
+@using (Html.BeginForm("Create", "Slide", FormMethod.Post))
 {
 
     @Html.AntiForgeryToken()
@@ -21,40 +34,17 @@
             <div class="col-md-6 py-3 ">
                 <div class="row" style="padding-bottom:5px">
                     <div class="col-md-2">
-                        <label for="CategoryID">CategoryID</label>
+                        <label for="Image">Image</label>
                     </div>
                     <div class="col-md-1">
-                        <label for="CategoryID"> : </label>
+                        <label for="Image"> : </label>
                     </div>
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.CategoryID, new { htmlAttributes = new { @readonly = "readonly" } })
-                        @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" }, id = "txtImage" })
+                        @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                        <a id="btnSelectImage" href="#">Chọn ảnh</a>
                     </div>
-                </div>
-                <div class="row" style="padding-bottom:5px">
-                    <div class="col-md-2">
-                        <label for="CategoryName">CategoryName</label>
-                    </div>
-                    <div class="col-md-1">
-                        <label for="CategoryName"> : </label>
-                    </div>
-                    <div class="col-md-9">
-                        @Html.TextBoxFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="row" style="padding-bottom:5px">
-                    <div class="col-md-2">
-                        <label for="MetaTitle">MetaTitle</label>
-                    </div>
-                    <div class="col-md-1">
-                        <label for="MetaTitle"> : </label>
-                    </div>
-                    <div class="col-md-9">
-                        @Html.TextBoxFor(model => model.MetaTitle, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.MetaTitle, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                </div>               
                 <div class="row" style="padding-bottom:5px">
                     <div class="col-md-2">
                         <label for="DisplayOrder">DisplayOrder</label>
@@ -66,12 +56,35 @@
                         @Html.TextBoxFor(model => model.DisplayOrder, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.DisplayOrder, "", new { @class = "text-danger" })
                     </div>
+                </div>
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
+                        <label for="Link">Link</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="Link"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Link, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row" style="padding-bottom:5px">
+                    <div class="col-md-2">
+                        <label for="Description">Description</label>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="Description"> : </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
 
                 </div>
-
             </div>
             <div class="col-md-6 py-3">
-
+                
                 <div class="row">
                     <div class="col-md-2">
                         <label for="Status">Status</label>
@@ -102,3 +115,4 @@
         </div>
     </div>
 }
+

@@ -1,15 +1,15 @@
-﻿@model OnlineShopWeb.Data.EF.Category
+﻿@model OnlineShopWeb.Data.EF.ProductCategory
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Quản lý loại sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
 }
 
 @section header{
-    Chỉnh sửa sản phẩm
+    Tạo mới sản phẩm
 }
 
-@using (Html.BeginForm("Edit", "Category", FormMethod.Post))
+@using (Html.BeginForm("Create", "ProductCategory", FormMethod.Post))
 {
 
     @Html.AntiForgeryToken()
@@ -21,26 +21,14 @@
             <div class="col-md-6 py-3 ">
                 <div class="row" style="padding-bottom:5px">
                     <div class="col-md-2">
-                        <label for="CategoryID">CategoryID</label>
+                        <label for="ProductCategoryName">Name</label>
                     </div>
                     <div class="col-md-1">
-                        <label for="CategoryID"> : </label>
+                        <label for="ProductCategoryName"> : </label>
                     </div>
                     <div class="col-md-9">
-                        @Html.EditorFor(model => model.CategoryID, new { htmlAttributes = new { @readonly = "readonly" } })
-                        @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="row" style="padding-bottom:5px">
-                    <div class="col-md-2">
-                        <label for="CategoryName">CategoryName</label>
-                    </div>
-                    <div class="col-md-1">
-                        <label for="CategoryName"> : </label>
-                    </div>
-                    <div class="col-md-9">
-                        @Html.TextBoxFor(model => model.CategoryName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.ProductCategoryName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ProductCategoryName, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="row" style="padding-bottom:5px">
@@ -70,8 +58,7 @@
                 </div>
 
             </div>
-            <div class="col-md-6 py-3">
-
+            <div class="col-md-6 py-3">              
                 <div class="row">
                     <div class="col-md-2">
                         <label for="Status">Status</label>
@@ -102,3 +89,6 @@
         </div>
     </div>
 }
+
+
+

@@ -2,6 +2,7 @@
 using OnlineShopWeb.Data.EF;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,8 +13,9 @@ namespace OnlineShopWeb.UI.Areas.Admin.Controllers
     {
         private static ProductDao _productDao = new ProductDao();
         // GET: Admin/Product
-        public ActionResult Index(string searchstring, int page = 1, int pagesize = 3)
+        public ActionResult Index(string searchstring, int page = 1)
         {
+            int pagesize = int.Parse(ConfigurationManager.AppSettings["Pagesize"].ToString());
             var _list = _productDao.GetListProduct(searchstring, page, pagesize);
             if (TempData["result"] != null)
             {

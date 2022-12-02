@@ -8,24 +8,23 @@ using System.Threading.Tasks;
 
 namespace OnlineShopWeb.Data.DAO
 {
-    public class CategoryDao
+    public class SlideDao
     {
         OnlineShopWebDBContext db = null;
-        public CategoryDao()
+        public SlideDao()
         {
             db = new OnlineShopWebDBContext();
         }
-        public long Insert(Category entity)
+        public long Insert(Slide entity)
         {
             entity.CreateDate = DateTime.Now;
-            db.Categories.Add(entity);
+            db.Slides.Add(entity);
             db.SaveChanges();
-            return entity.CategoryID;
+            return entity.SlideID;
         }
-
         public bool Delete(long? id)
         {
-            if(id == null)
+            if (id==null)
             {
                 return false;
             }
@@ -33,12 +32,12 @@ namespace OnlineShopWeb.Data.DAO
             {
                 try
                 {
-                    var _result = db.Categories.Find(id);
+                    var _result = db.Slides.Find(id);
                     if (_result == null)
                     {
                         return false;
                     }
-                    db.Categories.Remove(_result);
+                    db.Slides.Remove(_result);
                     db.SaveChanges();
                     return true;
                 }
@@ -47,19 +46,21 @@ namespace OnlineShopWeb.Data.DAO
                     return false;
                 }
             }
-           
+
         }
 
-        public bool Update(Category entity)
+        public bool Update(Slide entity)
         {
             try
             {
-                var _result = db.Categories.Find(entity.CategoryID);
-                _result.CategoryName = entity.CategoryName;
-                _result.MetaTitle = entity.MetaTitle;
+                var _result = db.Slides.Find(entity.SlideID);              
+                _result.Image = entity.Image;
+                _result.Link = entity.Link;
                 _result.DisplayOrder = entity.DisplayOrder;
+                _result.Image = entity.Image;
+                _result.Description = entity.Description;
                 _result.ModifiedBy = entity.ModifiedBy;
-                _result.ModifiedDate = DateTime.Now;            
+                _result.ModifiedDate = DateTime.Now;
                 _result.Status = entity.Status;
                 db.SaveChanges();
                 return true;
@@ -70,32 +71,23 @@ namespace OnlineShopWeb.Data.DAO
             }
 
         }
-        public IEnumerable<Category> GetListCategory(string searchstring, int page, int pagesize)
+        public IEnumerable<Slide> GetListSlide(string searchstring, int page, int pagesize)
         {
-            IQueryable<Category> _model = db.Categories;
+            IQueryable<Slide> _model = db.Slides;
             if (!string.IsNullOrEmpty(searchstring))
             {
-                _model = _model.Where(x => x.CategoryName.Contains(searchstring));
+                _model = _model.Where(x => x.Description.Contains(searchstring));
             }
-            return _model.OrderBy(x => x.CategoryID).ToPagedList(page, pagesize);
+            return _model.OrderBy(x => x.SlideID).ToPagedList(page, pagesize);
         }
-        public Category GetCategoryByCategoryName(string categoryName)
+     
+        public Slide GetSlideByID(long? Id)
         {
-            return db.Categories.FirstOrDefault(x => x.CategoryName == categoryName);
-        }
-
-        public Category GetCategoryByID(long? CategoryId)
-        {
-            if (CategoryId == null)
+            if (Id == null)
             {
                 return null;
             }
-            return db.Categories.Find(CategoryId);          
+            return db.Slides.Find(Id);
         }
-        public List<Category> ListAll()
-        {
-            return db.Categories.Where(x => x.Status == true).ToList();
-        }
-
     }
 }

@@ -1,0 +1,11 @@
+﻿@model  List<OnlineShopWeb.Data.EF.ProductCategory>
+<div class="categories">
+    <ul>
+        <h3>Danh mục sản phẩm</h3>
+        @foreach (var item in Model)
+        {
+            <li><a href="/san-pham/@item.MetaTitle-@item.ProductCategoryID">@item.ProductCategoryName</a></li>
+        }
+
+    </ul>
+</div>

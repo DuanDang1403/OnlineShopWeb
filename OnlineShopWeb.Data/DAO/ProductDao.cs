@@ -67,6 +67,7 @@ namespace OnlineShopWeb.Data.DAO
                 _result.MetaKeywords = entity.MetaKeywords;
                 _result.ModifiedBy = entity.ModifiedBy;
                 _result.ModifiedDate = DateTime.Now;
+                _result.TopHot = entity.TopHot;
                 _result.Status = entity.Status;
                 db.SaveChanges();
                 return true;
@@ -98,6 +99,15 @@ namespace OnlineShopWeb.Data.DAO
                 return null;
             }
             return db.Products.Find(productId);
+        }
+
+        public List<Product> ListNewproduct(int top)
+        {
+            return db.Products.OrderByDescending(x => x.CreateDate).Take(top).ToList();
+        }
+        public List<Product> ListFeatureProduct(int top)
+        {
+            return db.Products.Where(x => x.TopHot!=null && x.TopHot >= DateTime.Now).OrderByDescending(x => x.CreateDate).Take(top).ToList();
         }
     }
 }

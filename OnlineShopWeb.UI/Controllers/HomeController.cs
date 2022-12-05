@@ -12,6 +12,10 @@ namespace OnlineShopWeb.UI.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Slide = new SlideDao().ListAll();
+            var _dao = new ProductDao();
+            ViewBag.ListNewProduct = _dao.ListNewproduct(4);
+            ViewBag.ListFeature = _dao.ListFeatureProduct(4);
             return View();
         }
 

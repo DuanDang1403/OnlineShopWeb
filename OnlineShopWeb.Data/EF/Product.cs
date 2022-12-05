@@ -61,5 +61,7 @@ namespace OnlineShopWeb.Data.EF
         public bool Status { get; set; }
 
         public int? ViewCount { get; set; }
+
+        public DateTime? TopHot { get; set; }
     }
 }

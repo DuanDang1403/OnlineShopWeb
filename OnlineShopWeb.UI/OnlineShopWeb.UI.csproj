@@ -151,7 +151,9 @@
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Common\Constant.cs" />
     <Compile Include="Common\UserLogin.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -3177,6 +3179,10 @@
     <Content Include="Views\Home\Mainmenu.cshtml" />
     <Content Include="Views\Home\Topmenu.cshtml" />
     <Content Include="Views\Home\Footer.cshtml" />
+    <Content Include="Views\Product\ProductCategory.cshtml" />
+    <Content Include="Views\Product\ProductCategoryDetail.cshtml" />
+    <Content Include="Views\Product\ProductDetail.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

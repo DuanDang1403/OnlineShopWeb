@@ -15,7 +15,7 @@ namespace OnlineShopWeb.UI
 
             routes.MapRoute(
                 name: "Product Category",
-                url: "san-pham/{metatitle}-{categoryid}",
+                url: "san-pham/{metatitle}-{productCategoryId}",
                 defaults: new { controller = "Product", action = "ProductCategoryDetail", id = UrlParameter.Optional },
                 namespaces: new[] { "OnlineShopWeb.UI.Controllers" }
             );

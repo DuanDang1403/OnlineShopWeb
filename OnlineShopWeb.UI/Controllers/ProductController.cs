@@ -10,6 +10,7 @@ namespace OnlineShopWeb.UI.Controllers
     public class ProductController : Controller
     {
         private static ProductCategoryDao _productCategoryDao = new ProductCategoryDao();
+        private static ProductDao _productDao = new ProductDao();
         // GET: Product
         public ActionResult Index()
         {
@@ -19,20 +20,27 @@ namespace OnlineShopWeb.UI.Controllers
         [ChildActionOnly]
         public PartialViewResult ProductCategory()
         {
+            //var _detail = _productDao.GetListAll();
+            //ViewBag.product = _detail;
             var _list = _productCategoryDao.ListAll();
             return PartialView(_list);
 
         }
 
-        public ActionResult ProductCategoryDetail (long categoryid)
+        public ActionResult ProductCategoryDetail (long productCategoryId)
         {
-            var _detail = new ProductCategoryDao().GetProductCategoryByID(categoryid);
-            return View(_detail);
+            var _detail = _productCategoryDao.GetProductCategoryByID(productCategoryId);
+            ViewBag.category = _detail;
+            var _model = _productDao.ListProductByCategoryID(productCategoryId);
+            return View(_model);
         }
 
         public ActionResult ProductDetail(long productid)
-        {
-            var _detail = new ProductDao().GetProductByID(productid);
+        {  
+            var _detail = _productDao.GetProductByID(productid);
+            ViewBag.category = _productCategoryDao.GetProductCategoryByID(_detail.ProductCategoryID.Value);
+            ViewBag.RelatedProducts = new ProductDao().ListRelatedProducts(productid);
+            //ViewBag.product = _detail;
             return View(_detail);
         }
     }

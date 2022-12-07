@@ -63,6 +63,7 @@ namespace OnlineShopWeb.Data.DAO
                 _result.Warranty = entity.Warranty;
                 _result.Quantity = entity.Quantity;
                 _result.Price = entity.Price;
+                _result.ProductCategoryID = entity.ProductCategoryID;
                 _result.PromotionPrice = entity.PromotionPrice;
                 _result.MetaKeywords = entity.MetaKeywords;
                 _result.ModifiedBy = entity.ModifiedBy;
@@ -101,13 +102,29 @@ namespace OnlineShopWeb.Data.DAO
             return db.Products.Find(productId);
         }
 
-        public List<Product> ListNewproduct(int top)
+        public List<Product> ListNewProduct(int top)
         {
             return db.Products.OrderByDescending(x => x.CreateDate).Take(top).ToList();
         }
         public List<Product> ListFeatureProduct(int top)
         {
             return db.Products.Where(x => x.TopHot!=null && x.TopHot >= DateTime.Now).OrderByDescending(x => x.CreateDate).Take(top).ToList();
+        }
+        public List<Product> ListProductByCategoryID(long? productCategoryId)
+        {
+            return db.Products.Where(x => x.ProductCategoryID == productCategoryId).OrderByDescending(x => x.CreateDate).ToList();
+
+        }
+        public List<Product> GetListAll()
+        {
+            var _list = db.Products.ToList();
+            return _list;
+            
+        }
+        public List<Product> ListRelatedProducts(long productId)
+        {
+            var product = db.Products.Find(productId);
+            return db.Products.Where(x => x.ProductID != productId && x.ProductCategoryID == product.ProductCategoryID).ToList();
         }
     }
 }

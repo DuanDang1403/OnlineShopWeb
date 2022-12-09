@@ -152,11 +152,13 @@
     <Compile Include="Common\Constant.cs" />
     <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2880,11 +2882,13 @@
     <Content Include="Assets\UI\css\bootstrap.rtl.css" />
     <Content Include="Assets\UI\css\bootstrap.rtl.min.css" />
     <Content Include="Assets\UI\css\easy-responsive-tabs.css" />
+    <Content Include="Assets\UI\css\font-awesome.css" />
     <Content Include="Assets\UI\css\font-awesome.min.css" />
     <Content Include="Assets\UI\css\global.css" />
     <Content Include="Assets\UI\css\jquery-ui.css" />
     <Content Include="Assets\UI\css\slider.css" />
     <Content Include="Assets\UI\css\style.css" />
+    <Content Include="Assets\UI\fonts\fontawesome-webfont.svg" />
     <Content Include="Assets\UI\font\fontawesome-webfont.svg" />
     <Content Include="Assets\UI\images\about_img.jpg" />
     <Content Include="Assets\UI\images\arrow-next.png" />
@@ -3199,6 +3203,25 @@
     <Content Include="Assets\UI\font\fontawesome-webfont.woff" />
     <Content Include="Assets\UI\font\fontawesome-webfont.woff2" />
     <Content Include="Assets\UI\font\FontAwesome.otf" />
+    <Content Include="Assets\UI\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\UI\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\UI\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\UI\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\UI\fonts\FontAwesome.otf" />
+    <Content Include="Assets\UI\scss\font-awesome.scss" />
+    <Content Include="Assets\UI\scss\_animated.scss" />
+    <Content Include="Assets\UI\scss\_bordered-pulled.scss" />
+    <Content Include="Assets\UI\scss\_core.scss" />
+    <Content Include="Assets\UI\scss\_fixed-width.scss" />
+    <Content Include="Assets\UI\scss\_icons.scss" />
+    <Content Include="Assets\UI\scss\_larger.scss" />
+    <Content Include="Assets\UI\scss\_list.scss" />
+    <Content Include="Assets\UI\scss\_mixins.scss" />
+    <Content Include="Assets\UI\scss\_path.scss" />
+    <Content Include="Assets\UI\scss\_rotated-flipped.scss" />
+    <Content Include="Assets\UI\scss\_screen-reader.scss" />
+    <Content Include="Assets\UI\scss\_stacked.scss" />
+    <Content Include="Assets\UI\scss\_variables.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -3229,12 +3252,12 @@
     <Content Include="Views\Product\ProductCategoryDetail.cshtml" />
     <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Data_Image\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

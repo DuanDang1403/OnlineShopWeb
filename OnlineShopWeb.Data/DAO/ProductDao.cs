@@ -110,9 +110,11 @@ namespace OnlineShopWeb.Data.DAO
         {
             return db.Products.Where(x => x.TopHot!=null && x.TopHot >= DateTime.Now).OrderByDescending(x => x.CreateDate).Take(top).ToList();
         }
-        public List<Product> ListProductByCategoryID(long? productCategoryId)
+        public List<Product> ListProductByCategoryID(long? productCategoryId, ref int totalRecoder, int page, int pageSize)
         {
-            return db.Products.Where(x => x.ProductCategoryID == productCategoryId).OrderByDescending(x => x.CreateDate).ToList();
+            totalRecoder = db.Products.Where(x => x.ProductCategoryID == productCategoryId).Count();
+            var model = db.Products.Where(x => x.ProductCategoryID == productCategoryId).OrderByDescending(x => x.CreateDate).Skip((page-1)*pageSize).Take(pageSize).ToList();
+            return model;
 
         }
         public List<Product> GetListAll()

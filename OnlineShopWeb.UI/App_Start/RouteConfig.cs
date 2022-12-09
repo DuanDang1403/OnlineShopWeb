@@ -27,12 +27,17 @@ namespace OnlineShopWeb.UI
           );
 
             routes.MapRoute(
-             name: "Aboutl",
+             name: "About",
              url: "gioi-thieu",
              defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
              namespaces: new[] { "OnlineShopWeb.UI.Controllers" }
          );
-
+            routes.MapRoute(
+            name: "Add Cart",
+            url: "them-gio-hang/{productid}",
+            defaults: new { controller = "Cart", action = "AddItem", id = UrlParameter.Optional },
+            namespaces: new[] { "OnlineShop.Controllers" }
+         );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

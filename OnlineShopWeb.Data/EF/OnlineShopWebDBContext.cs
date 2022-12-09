@@ -28,6 +28,9 @@ namespace OnlineShopWeb.Data.EF
         public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<About>()
@@ -105,6 +108,14 @@ namespace OnlineShopWeb.Data.EF
             modelBuilder.Entity<User>()
                 .Property(e => e.ModifiedBy)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Order>()
+          .Property(e => e.ShipMobile)
+          .IsUnicode(false);
+
+            modelBuilder.Entity<OrderDetail>()
+               .Property(e => e.Price)
+               .HasPrecision(18, 0);           
         }
     }
 }

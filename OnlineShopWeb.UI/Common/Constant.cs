@@ -9,6 +9,6 @@ namespace OnlineShopWeb.UI.Common
     {
 
         public static string User_Login = "User_Login";
-
+        public static string CartSession = "CartSession";
     }
 }

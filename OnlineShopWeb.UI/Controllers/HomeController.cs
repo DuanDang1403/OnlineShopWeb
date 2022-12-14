@@ -1,4 +1,5 @@
 ﻿using OnlineShopWeb.Data.DAO;
+using OnlineShopWeb.UI.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -33,6 +34,19 @@ namespace OnlineShopWeb.UI.Controllers
             int _typeId = int.Parse(ConfigurationManager.AppSettings["Top_Menu"].ToString());
             var model = new MenuDao().GetAllByMenuTypeId(_typeId);
             return PartialView(model);
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult HeaderCart()
+        {
+
+            var cart = Session[Common.Constant.CartSession];
+            var list = new List<CartItem>();
+            if (cart != null)
+            {
+                list = (List<CartItem>)cart;
+            }
+            return PartialView(list);
         }
 
         [ChildActionOnly]

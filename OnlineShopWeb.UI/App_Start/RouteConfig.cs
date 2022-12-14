@@ -33,6 +33,18 @@ namespace OnlineShopWeb.UI
              namespaces: new[] { "OnlineShopWeb.UI.Controllers" }
          );
             routes.MapRoute(
+            name: "Product",
+            url: "san-pham",
+            defaults: new { controller = "Product", action = "Index", id = UrlParameter.Optional },
+            namespaces: new[] { "OnlineShopWeb.UI.Controllers" }
+        );
+                 routes.MapRoute(
+           name: "Cart",
+           url: "gio-hang",
+           defaults: new { controller = "Cart", action = "Index", id = UrlParameter.Optional },
+           namespaces: new[] { "OnlineShop.Controllers" }
+        );
+            routes.MapRoute(
             name: "Add Cart",
             url: "them-gio-hang/{productid}",
             defaults: new { controller = "Cart", action = "AddItem", id = UrlParameter.Optional },

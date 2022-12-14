@@ -2946,6 +2946,7 @@
     <Content Include="Assets\UI\js\jquery-1.7.2.min.js" />
     <Content Include="Assets\UI\js\jquery.accordion.js" />
     <Content Include="Assets\UI\js\jquery.easing.js" />
+    <Content Include="Assets\UI\js\jsController\CartController.js" />
     <Content Include="Assets\UI\js\move-top.js" />
     <Content Include="Assets\UI\js\script.js" />
     <Content Include="Assets\UI\js\slides.min.jquery.js" />
@@ -3253,6 +3254,7 @@
     <Content Include="Views\Product\ProductDetail.cshtml" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Home\HeaderCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

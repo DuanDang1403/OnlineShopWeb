@@ -13,11 +13,11 @@ namespace OnlineShopWeb.UI.Controllers
 {
     public class CartController : Controller
     {
-        private const string CartSession = "CartSession";
+     
         // GET: Cart
         public ActionResult Index()
         {
-            var cart = Session[CartSession];
+            var cart = Session[Common.Constant.CartSession];
             var list = new List<CartItem>();
             if (cart != null)
             {
@@ -27,7 +27,7 @@ namespace OnlineShopWeb.UI.Controllers
         }
         public JsonResult DeleteAll()
         {
-            Session[CartSession] = null;
+            Session[Common.Constant.CartSession] = null;
             return Json(new
             {
                 status = true
@@ -36,9 +36,9 @@ namespace OnlineShopWeb.UI.Controllers
 
         public JsonResult Delete(long id)
         {
-            var sessionCart = (List<CartItem>)Session[CartSession];
+            var sessionCart = (List<CartItem>)Session[Common.Constant.CartSession];
             sessionCart.RemoveAll(x => x.Product.ProductID == id);
-            Session[CartSession] = sessionCart;
+            Session[Common.Constant.CartSession] = sessionCart;
             return Json(new
             {
                 status = true
@@ -47,7 +47,7 @@ namespace OnlineShopWeb.UI.Controllers
         public JsonResult Update(string cartModel)
         {
             var jsonCart = new JavaScriptSerializer().Deserialize<List<CartItem>>(cartModel);
-            var sessionCart = (List<CartItem>)Session[CartSession];
+            var sessionCart = (List<CartItem>)Session[Common.Constant.CartSession];
 
             foreach (var item in sessionCart)
             {
@@ -57,7 +57,7 @@ namespace OnlineShopWeb.UI.Controllers
                     item.Quantity = jsonItem.Quantity;
                 }
             }
-            Session[CartSession] = sessionCart;
+            Session[Common.Constant.CartSession] = sessionCart;
             return Json(new
             {
                 status = true
@@ -67,7 +67,7 @@ namespace OnlineShopWeb.UI.Controllers
         {
             int quantity = 1;
             var product = new ProductDao().GetProductByID(productId);
-            var cart = Session[CartSession];
+            var cart = Session[Common.Constant.CartSession];
             if (cart != null)
             {
                 var list = (List<CartItem>)cart;
@@ -91,7 +91,7 @@ namespace OnlineShopWeb.UI.Controllers
                     list.Add(item);
                 }
                 //Gán vào session
-                Session[CartSession] = list;
+                Session[Common.Constant.CartSession] = list;
             }
             else
             {
@@ -102,14 +102,14 @@ namespace OnlineShopWeb.UI.Controllers
                 var list = new List<CartItem>();
                 list.Add(item);
                 //Gán vào session
-                Session[CartSession] = list;
+                Session[Common.Constant.CartSession] = list;
             }
             return RedirectToAction("Index");
         }
         [HttpGet]
         public ActionResult Payment()
         {
-            var cart = Session[CartSession];
+            var cart = Session[Common.Constant.CartSession];
             var list = new List<CartItem>();
             if (cart != null)
             {
@@ -131,7 +131,7 @@ namespace OnlineShopWeb.UI.Controllers
             try
             {
                 var id = new OrderDao().Insert(_order);
-                var cart = (List<CartItem>)Session[CartSession];
+                var cart = (List<CartItem>)Session[Common.Constant.CartSession];
                 var detailDao = new OnlineShopWeb.Data.DAO.OrderDetailDao();
                 decimal total = 0;
                 foreach (var item in cart)

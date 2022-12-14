@@ -54,13 +54,26 @@
                 <a href="@url"><img src="@item.Image" alt="" /></a>
                 <h2>@item.ProductName</h2>
                 <div class="price-details">
-                    <div class="price-number">
-                        <p><span class="rupees">@(item.Price.HasValue ? item.Price.Value.ToString("N0") : "Liên hệ")</span></p>
+                    <div style="min-height: 35px;" class="block-prices text-left  d-block">
+                        <div>
+                            <span class="product-price font-medium  d-block  w-100">@(item.PromotionPrice.HasValue ? item.PromotionPrice.Value.ToString("N0") : "Liên hệ")</span>
+                        </div>
+                        
+                        <div>
+                            <span class="product-old-price d-block" style="color:red">
+                                <del>@(item.Price.HasValue ? item.Price.Value.ToString("N0") : "Liên hệ")</del>
+                                <span class="text-primary style-percent-product">-10%</span>
+                            </span>
+                        </div>                        
+
                     </div>
-                    <div class="add-cart">
+                    @*<div class="price-number">
+            <p><span class="rupees">@(item.Price.HasValue ? item.Price.Value.ToString("N0") : "Liên hệ")</span></p>
+        </div>*@
+                    <div class="add-cart" style="float:left">
                         <h4><a href="/them-gio-hang/@item.ProductID">Thêm vào giỏ</a></h4>
                     </div>
-                    <div class="clear"></div>
+                   
                 </div>
 
             </div>
@@ -85,14 +98,28 @@
                 <a href="@url"><img src="@item.Image" alt="" /></a>
                 <h2>@item.ProductName</h2>
                 <div class="price-details">
-                    <div class="price-number">
-                        <p><span class="rupees">@(item.Price.HasValue ? item.Price.Value.ToString("N0") : "Liên hệ")</span></p>
+                    <div style="min-height: 35px;" class="block-prices text-left  d-block">
+                        <div>
+                            <span class="product-price font-medium  d-block  w-100">@(item.PromotionPrice.HasValue ? item.PromotionPrice.Value.ToString("N0") : "Liên hệ")</span>
+                        </div>
+
+                        <div>
+                            <span class="product-old-price d-block" style="color:red">
+                                <del>@(item.Price.HasValue ? item.Price.Value.ToString("N0") : "Liên hệ")</del>
+                                <span class="text-primary style-percent-product">-10%</span>
+                            </span>
+                        </div>
+
                     </div>
-                    <div class="add-cart">
+                    @*<div class="price-number">
+                <p><span class="rupees">@(item.Price.HasValue ? item.Price.Value.ToString("N0") : "Liên hệ")</span></p>
+            </div>*@
+                    <div class="add-cart" style="float:left">
                         <h4><a href="/them-gio-hang/@item.ProductID">Thêm vào giỏ</a></h4>
                     </div>
-                    <div class="clear"></div>
+
                 </div>
+              
 
             </div>
         }

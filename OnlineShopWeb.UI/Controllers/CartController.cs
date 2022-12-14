@@ -132,7 +132,8 @@ namespace OnlineShopWeb.UI.Controllers
             {
                 var id = new OrderDao().Insert(_order);
                 var cart = (List<CartItem>)Session[Common.Constant.CartSession];
-                var detailDao = new OnlineShopWeb.Data.DAO.OrderDetailDao();
+                List<long> _productid = new List<long>();
+                var detailDao = new OrderDetailDao();               
                 decimal total = 0;
                 foreach (var item in cart)
                 {
@@ -142,18 +143,25 @@ namespace OnlineShopWeb.UI.Controllers
                     _orderDetail.OrderID = id;
                     _orderDetail.Price = item.Product.Price;
                     _orderDetail.Quantity = item.Quantity;
-                    _orderDetail.TotalPrice = total;
+                    _orderDetail.TotalPrice = (item.Product.Price.GetValueOrDefault(0) * item.Quantity);
                     detailDao.Insert(_orderDetail);
-                   
+                    _productid.Add(item.Product.ProductID);
                 }
-                string content = System.IO.File.ReadAllText(Server.MapPath("~/assets/client/template/neworder.html"));
+                
+                foreach (var cartItem in _productid)
+                {
+                    cart.RemoveAll(x => x.Product.ProductID == cartItem);
+                    
+                }
+                Session[Common.Constant.CartSession] = cart;
+                //string content = System.IO.File.ReadAllText(Server.MapPath("~/assets/client/template/neworder.html"));
 
-                content = content.Replace("{{CustomerName}}", shipName);
-                content = content.Replace("{{Phone}}", mobile);
-                content = content.Replace("{{Email}}", email);
-                content = content.Replace("{{Address}}", address);
-                content = content.Replace("{{Total}}", total.ToString("N0"));
-                var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+                //content = content.Replace("{{CustomerName}}", shipName);
+                //content = content.Replace("{{Phone}}", mobile);
+                //content = content.Replace("{{Email}}", email);
+                //content = content.Replace("{{Address}}", address);
+                //content = content.Replace("{{Total}}", total.ToString("N0"));
+                //var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
 
                 //new MailHelper().SendMail(email, "Đơn hàng mới từ OnlineShop", content);
                 //new MailHelper().SendMail(toEmail, "Đơn hàng mới từ OnlineShop", content);

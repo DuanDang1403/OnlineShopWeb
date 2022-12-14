@@ -1,9 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace OnlineShopWeb.Data.EF
 {
     using System;
@@ -16,10 +10,19 @@ namespace OnlineShopWeb.Data.EF
     public partial class OrderDetail
     {
         [Key]
-        public long OrderID { get; set; } 
+        [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long OrderID { get; set; }
+
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long ProductID { get; set; }
-        public int Quantity { get; set; }
+
+        public int? Quantity { get; set; }
+
         public decimal? Price { get; set; }
+
         public decimal? TotalPrice { get; set; }
     }
 }

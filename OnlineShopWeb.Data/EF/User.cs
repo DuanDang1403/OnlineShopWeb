@@ -9,15 +9,12 @@ namespace OnlineShopWeb.Data.EF
     [Table("User")]
     public partial class User
     {
-       
         public long UserID { get; set; }
 
         [StringLength(50)]
-        //[Required(ErrorMessage = "Vui lòng nh?p UserName")]
         public string UserName { get; set; }
 
         [StringLength(50)]
-       // [Required(ErrorMessage = "Vui lòng nh?p Password")]
         public string Password { get; set; }
 
         [StringLength(50)]
@@ -42,7 +39,6 @@ namespace OnlineShopWeb.Data.EF
         [StringLength(50)]
         public string ModifiedBy { get; set; }
 
-        
         public bool Status { get; set; }
     }
 }

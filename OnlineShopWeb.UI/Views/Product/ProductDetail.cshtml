@@ -73,9 +73,24 @@
                     <div class="desc span_3_of_2">
                         <h2>@Model.ProductName </h2>
                         <p>@Model.Description</p>
-                        <div class="price">
-                            <p>Giá: <span>@(Model.Price.HasValue ? Model.Price.Value.ToString("N0") : "Liên hệ")</span></p>
+                        <div class="price-details">
+                            <div style="min-height: 35px;" class="block-prices text-left  d-block">
+                                <div>
+                                    <span class="product-price font-medium  d-block  w-100">@(Model.PromotionPrice.HasValue ? Model.PromotionPrice.Value.ToString("N0") : "Liên hệ")</span>
+                                </div>
+
+                                <div>
+                                    <span class="product-old-price d-block" style="color:red">
+                                        <del>@(Model.Price.HasValue ? Model.Price.Value.ToString("N0") : "Liên hệ")</del>
+                                        <span class="text-primary style-percent-product">-10%</span>
+                                    </span>
+                                </div>
+
+                            </div>                      
+                           
+
                         </div>
+                       
                         <div class="share-desc">
                             <div class="share">
                                 <p>Chia sẻ :</p>

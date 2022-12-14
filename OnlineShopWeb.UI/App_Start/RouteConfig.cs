@@ -44,12 +44,28 @@ namespace OnlineShopWeb.UI
            defaults: new { controller = "Cart", action = "Index", id = UrlParameter.Optional },
            namespaces: new[] { "OnlineShop.Controllers" }
         );
+
+
             routes.MapRoute(
             name: "Add Cart",
             url: "them-gio-hang/{productid}",
             defaults: new { controller = "Cart", action = "AddItem", id = UrlParameter.Optional },
             namespaces: new[] { "OnlineShop.Controllers" }
          );
+
+            routes.MapRoute(
+          name: "Payment",
+          url: "thanh-toan",
+          defaults: new { controller = "Cart", action = "Payment", id = UrlParameter.Optional },
+          namespaces: new[] { "OnlineShop.Controllers" }
+       );
+
+         routes.MapRoute(
+         name: "Success",
+         url: "hoan-thanh",
+         defaults: new { controller = "Cart", action = "Success", id = UrlParameter.Optional },
+         namespaces: new[] { "OnlineShop.Controllers" }
+      );
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

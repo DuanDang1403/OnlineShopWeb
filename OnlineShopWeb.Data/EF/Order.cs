@@ -1,9 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace OnlineShopWeb.Data.EF
 {
     using System;
@@ -16,23 +10,23 @@ namespace OnlineShopWeb.Data.EF
     public partial class Order
     {
         public long OrderID { get; set; }
+
         public DateTime? CreateDate { get; set; }
 
-        public long CustomerID { get; set; }
+        public long? CustomerID { get; set; }
 
-        [StringLength(250)]
+        [StringLength(50)]
         public string ShipName { get; set; }
 
-        [StringLength(250)]
+        [StringLength(50)]
         public string ShipMobile { get; set; }
 
-        [StringLength(500)]
+        [StringLength(50)]
         public string ShipAddress { get; set; }
 
-        [StringLength(250)]
+        [StringLength(50)]
         public string ShipEmail { get; set; }
 
-        public bool Status { get; set; }
-
+        public bool? Status { get; set; }
     }
 }

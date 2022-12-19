@@ -1,0 +1,98 @@
+﻿@model OnlineShopWeb.Data.EF.Contact
+@{
+    ViewBag.Title = "Liên hệ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    #mapCanvas {
+        height: 300px;
+    }
+</style>
+@section jsfooter{
+    @*<script src="https://maps.googleapis.com/maps/api/js"></script>*@
+<script src="~/Assets/UI/js/jsController/contactController.js"></script>
+    @*<script>
+            function initMap() {
+                var uluru = { lat: 10.7806099, lng: 106.6970949 };
+                var map = new google.maps.Map(document.getElementById('mapCanvas'), {
+                    zoom: 18,
+                    center: uluru
+                });
+
+                var contentString = '@Html.Raw(Model.Content)';
+
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map,
+                    title: 'Địa chỉ'
+                });
+                marker.addListener('click', function () {
+                    infowindow.open(map, marker);
+                });
+            }
+            google.maps.event.addDomListener(window, 'load', initMap);
+        </script>*@
+
+
+}
+<div class="main">
+    <div class="content">
+        <div class="section group">
+            <div class="col span_1_of_3">
+                <div class="contact-form">
+                    <h2>Email cho chúng tôi </h2>
+
+                    <form>
+                        <div>
+                            <span><label>Họ tên</label></span>
+                            <span style="width:300px"><input type="text" id="txtName" class="form-control"></span>
+                        </div>
+                        <div>
+                            <span><label>Điện thoại</label></span>
+                            <span style="width:300px"><input type="text" id="txtMobile" class="form-control"></span>
+                        </div>
+                        <div>
+                            <span><label>Địa chỉ</label></span>
+                            <span style="width:300px"><input type="text" id="txtAddress" class="form-control"></span>
+                        </div>
+                        <div>
+                            <span><label>E-mail</label></span>
+                            <span style="width:300px"><input type="text" id="txtEmail" class="form-control"></span>
+                        </div>
+                        <div>
+                            <span><label>Nội dung</label></span>
+                            <textarea style="width:300px" id="txtContent" class="form-control"> </textarea>
+                        </div>
+                        <div>
+                            <button id="btnSend" class="btn btn-success">Gửi liên hệ</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col span_2_of_3">
+                <div class="contact_info">
+                    <h3>Tìm chúng tôi</h3>
+                    <div class="map" id="mapCanvas">
+                        <iframe width="650"
+                                height="300"
+                                style="border:0"
+                                loading="lazy"
+                                allowfullscreen="" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18113.090650028047!2d106.69232645302355!3d10.781756325111159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f37cda869ef%3A0xdef411aa6faa44a9!2zNjkgxJAuIEzDqiBEdeG6qW4sIELhur9uIE5naMOpLCBRdeG6rW4gMSwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1671438474471!5m2!1svi!2s">
+                        </iframe>
+                    </div>
+                </div>
+                <div class="company_address">
+                    @Html.Raw(Model.Content)
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

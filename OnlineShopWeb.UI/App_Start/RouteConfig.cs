@@ -33,6 +33,13 @@ namespace OnlineShopWeb.UI
              namespaces: new[] { "OnlineShopWeb.UI.Controllers" }
          );
             routes.MapRoute(
+             name: "Contact",
+             url: "lien-he",
+             defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },
+             namespaces: new[] { "OnlineShopWeb.UI.Controllers" }
+         );
+
+            routes.MapRoute(
             name: "Product",
             url: "san-pham",
             defaults: new { controller = "Product", action = "Index", id = UrlParameter.Optional },

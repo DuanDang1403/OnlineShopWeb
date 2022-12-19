@@ -1,4 +1,6 @@
-﻿using OnlineShopWeb.Data.DAO;
+﻿
+using Common;
+using OnlineShopWeb.Data.DAO;
 using OnlineShopWeb.Data.EF;
 using OnlineShopWeb.UI.Models;
 using System;
@@ -132,9 +134,13 @@ namespace OnlineShopWeb.UI.Controllers
             {
                 var id = new OrderDao().Insert(_order);
                 var cart = (List<CartItem>)Session[Common.Constant.CartSession];
-                List<long> _productid = new List<long>();
+                //List<long> _productid = new List<long>();
+                //List<string> _productname = new List<string>();
+                List<Product> _productid = new List<Product>();
                 var detailDao = new OrderDetailDao();               
                 decimal total = 0;
+                string _productName = null;
+                string _image = null;
                 foreach (var item in cart)
                 {
                     total += (item.Product.Price.GetValueOrDefault(0) * item.Quantity);
@@ -145,26 +151,33 @@ namespace OnlineShopWeb.UI.Controllers
                     _orderDetail.Quantity = item.Quantity;
                     _orderDetail.TotalPrice = (item.Product.Price.GetValueOrDefault(0) * item.Quantity);
                     detailDao.Insert(_orderDetail);
-                    _productid.Add(item.Product.ProductID);
+                    //_productid.Add(item.Product.ProductID);
+                    //_productname.Add(item.Product.ProductName);
+                    _productid.Add(item.Product);
                 }
-                
                 foreach (var cartItem in _productid)
                 {
-                    cart.RemoveAll(x => x.Product.ProductID == cartItem);
-                    
+                    _productName = cartItem.ProductName;
+                    _image = cartItem.Image;
+                    cart.RemoveAll(x => x.Product.ProductID == cartItem.ProductID);
+
                 }
                 Session[Common.Constant.CartSession] = cart;
-                //string content = System.IO.File.ReadAllText(Server.MapPath("~/assets/client/template/neworder.html"));
+                string content = System.IO.File.ReadAllText(Server.MapPath("~/Assets/UI/template/neworder.html"));
 
-                //content = content.Replace("{{CustomerName}}", shipName);
-                //content = content.Replace("{{Phone}}", mobile);
-                //content = content.Replace("{{Email}}", email);
-                //content = content.Replace("{{Address}}", address);
-                //content = content.Replace("{{Total}}", total.ToString("N0"));
-                //var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
+                content = content.Replace("{{CustomerName}}", shipName);
+                content = content.Replace("{{Phone}}", mobile);
+                content = content.Replace("{{Email}}", email);
+                content = content.Replace("{{Address}}", address);
+                content = content.Replace("{{ProductName}}", _productName);
+                content = content.Replace("{{image}}", "https://localhost:44383"+_image);
+                content = content.Replace("{{Total}}", total.ToString("N0"));
+                var toEmail = ConfigurationManager.AppSettings["ToEmailAddress"].ToString();
 
-                //new MailHelper().SendMail(email, "Đơn hàng mới từ OnlineShop", content);
-                //new MailHelper().SendMail(toEmail, "Đơn hàng mới từ OnlineShop", content);
+                new MailHelper().SendMail(email, "Đơn hàng mới từ Shop Mẹ và Bé", content);
+                new MailHelper().SendMail(toEmail, "Đơn hàng mới từ Shop Mẹ và Bé", content);
+
+               
             }
             catch (Exception ex)
             {

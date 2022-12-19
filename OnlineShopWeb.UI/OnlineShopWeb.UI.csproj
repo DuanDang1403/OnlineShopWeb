@@ -153,6 +153,7 @@
     <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
@@ -2947,10 +2948,12 @@
     <Content Include="Assets\UI\js\jquery.accordion.js" />
     <Content Include="Assets\UI\js\jquery.easing.js" />
     <Content Include="Assets\UI\js\jsController\CartController.js" />
+    <Content Include="Assets\UI\js\jsController\contactController.js" />
     <Content Include="Assets\UI\js\move-top.js" />
     <Content Include="Assets\UI\js\script.js" />
     <Content Include="Assets\UI\js\slides.min.jquery.js" />
     <Content Include="Assets\UI\js\startstop-slider.js" />
+    <Content Include="Assets\UI\template\neworder.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -3257,6 +3260,7 @@
     <Content Include="Views\Home\HeaderCart.cshtml" />
     <Content Include="Views\Cart\Payment.cshtml" />
     <Content Include="Views\Cart\Success.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3277,6 +3281,10 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{A9E8E25A-64AF-43A1-964D-C0C5F3387622}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OnlineShopWeb.Data\OnlineShopWeb.Data.csproj">
       <Project>{310740a4-9b57-4dd9-a6e4-d32b032d41fd}</Project>
       <Name>OnlineShopWeb.Data</Name>

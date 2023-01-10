@@ -77,6 +77,16 @@ namespace OnlineShopWeb.Data.DAO
             return db.Users.FirstOrDefault(x => x.UserName == userName);
         }
 
+        public bool CheckUserName(string userName)
+        {
+            return db.Users.Count(x => x.UserName == userName) > 0;
+           
+        }
+        public bool CheckEmail(string email)
+        {
+            return db.Users.Count(x => x.Email == email) > 0;
+
+        }
         public User GetUserByID(int UserId)
         {
             return db.Users.Find(UserId);

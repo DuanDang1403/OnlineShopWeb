@@ -7,7 +7,6 @@ namespace OnlineShopWeb.UI.Common
 {
     public static class Constant
     {
-
         public static string User_Login = "User_Login";
         public static string CartSession = "CartSession";
     }

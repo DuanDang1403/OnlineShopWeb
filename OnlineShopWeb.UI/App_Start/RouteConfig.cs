@@ -71,6 +71,13 @@ namespace OnlineShopWeb.UI
        );
 
             routes.MapRoute(
+          name: "Đăng nhập",
+          url: "dang-nhap",
+          defaults: new { controller = "UserClient", action = "ClientLogin", id = UrlParameter.Optional },
+          namespaces: new[] { "OnlineShop.Controllers" }
+       );
+
+            routes.MapRoute(
           name: "Payment",
           url: "thanh-toan",
           defaults: new { controller = "Cart", action = "Payment", id = UrlParameter.Optional },

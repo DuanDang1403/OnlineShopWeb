@@ -22,8 +22,7 @@ namespace OnlineShopWeb.UI.Areas.Admin.Controllers
                 model.Password = CryptoService.EncryptMD5(model.Password);
                 var _result = _userDao.Login(model.UserName, model.Password);
                 if (_result==0)
-                {
-              
+                {              
                     var _user = _userDao.GetUserByUserName(model.UserName);
                    var _userSession = new UserLogin();
                     _userSession.UserID = _user.UserID;

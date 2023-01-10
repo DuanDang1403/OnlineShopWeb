@@ -116,6 +116,7 @@ namespace OnlineShopWeb.Data.EF
                 .Property(e => e.ModifiedBy)
                 .IsUnicode(false);
         }
-     
+
+       
     }
 }

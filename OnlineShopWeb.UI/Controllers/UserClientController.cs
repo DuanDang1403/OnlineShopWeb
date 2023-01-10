@@ -73,5 +73,49 @@ namespace OnlineShopWeb.UI.Controllers
             }
             return View(registerModel);
         }
+
+        [HttpGet]
+        public ActionResult ClientLogin()
+        {
+                return View();
+        }
+        [HttpPost]
+        public ActionResult ClientLogin(ClientLoginModel clientLoginModel)
+        {
+            if (ModelState.IsValid)
+            {
+                _userDao = new UserDao();
+                clientLoginModel.Password = CryptoService.EncryptMD5(clientLoginModel.Password);
+                var _checkUserNameLogin = _userDao.Login(clientLoginModel.UserName,clientLoginModel.Password);
+                if (_checkUserNameLogin == 0)
+                {
+                    var _user = _userDao.GetUserByUserName(clientLoginModel.UserName);
+                    var _userSession = new UserLogin();
+                    _userSession.UserID = _user.UserID;
+                    _userSession.UserName = _user.UserName;
+                    Session.Add(Constant.User_Login, _userSession);
+                    return Redirect("/");
+                }
+                else if (_checkUserNameLogin == 1)
+                {
+                    ModelState.AddModelError("", "Tài khoản đã bị khóa");
+                }
+                else if(_checkUserNameLogin == 2)
+                {
+                    ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không đúng");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Tài khoản chưa được đăng ký");
+                }
+            }
+            return View(clientLoginModel);
+        }
+
+        public ActionResult ClientLogout()
+        {
+          Session[Constant.User_Login] = null;
+            return Redirect("/");
+        }
     }
 }
